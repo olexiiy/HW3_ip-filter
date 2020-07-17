@@ -1,10 +1,14 @@
 dist: xenial
 language: cpp
 compiler: clang
-
+addons:
+  apt:
+    packages:
+    - libboost-test-dev
 env:
     global:
         - PKG=ip_filter
+        
 script:
 - cmake .
 - cmake --build .
