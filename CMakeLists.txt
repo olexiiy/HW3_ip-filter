@@ -13,7 +13,6 @@ set_target_properties(ip_filter  PROPERTIES
 )
 
 
-
 install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
