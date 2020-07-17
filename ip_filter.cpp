@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
@@ -111,13 +112,13 @@ int main()
             ip_pool = vs_to_vi(ip_pool_vs);
         }
 
-        
+        std::vector<vi> ip_res;
 
         // TODO reverse lexicographically sort
 
         ip_sort(ip_pool);
-
-        ip_print(ip_pool);
+        std::copy(ip_pool.begin(), ip_pool.end(), std::back_inserter(ip_res));
+        //        ip_print(ip_pool);
         // TODO filter by first byte and output
         {
 
@@ -133,7 +134,7 @@ int main()
 
             int i_filter = 1;
             auto ip = filter(ip_pool, i_filter);
-            ip_print(ip);
+            std::copy(ip.begin(), ip.end(), std::back_inserter(ip_res));
         }
 
         // TODO filter by first and second bytes and output
@@ -142,17 +143,17 @@ int main()
             int i_filter1 = 46, i_filter2 = 70;
 
             auto ip = filter(ip_pool, i_filter1, i_filter2);
-            ip_print(ip);
+            std::copy(ip.begin(), ip.end(), std::back_inserter(ip_res));
         }
-
 
         // TODO filter by any byte and output
         {
             int i_filter = 46;
 
             auto ip = filter_any(ip_pool, i_filter);
-            ip_print(ip);
+            std::copy(ip.begin(), ip.end(), std::back_inserter(ip_res));
         }
+        ip_print(ip_res);
 
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
